@@ -1,13 +1,14 @@
 class App
 {
-    btnRandomLifeGeneration = document.getElementById('btn-create-board')
+    btnRandomLifeGeneration = document.getElementById('btn-generate-random-cells')
     btnCreateBoard = document.getElementById('btn-create-board')
     btnStart = document.getElementById('btn-start')
     inputWidth = document.getElementById('input-width')
     inputHeight = document.getElementById('input-height')
 
-    constructor (board) {
+    constructor (board, stateManager) {
         this.board = board
+        this.stateManager = stateManager
 
         this.setHandlers()
     }
@@ -26,7 +27,13 @@ class App
             .draw()
     }
 
-    createRandomLifeBoard = () => {}
+    createRandomLifeBoard = () => {
+        this.stateManager.fixStateBeforeNextGeneration()
+            .generateRandomLifeMap(this.board.width, this.board.height)
+
+        this.board.updateBoardMap(this.stateManager.mergeOldAndNewLifeMaps())
+            .rerender()
+    }
 
     startNewGame = () => {}
 }

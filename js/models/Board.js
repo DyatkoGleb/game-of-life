@@ -2,7 +2,8 @@ class Board
 {
     boardMap = []
 
-    constructor (width, height) {
+    constructor (stateManager, width, height) {
+        this.stateManager = stateManager
         this.width = width
         this.height = height
 
@@ -58,6 +59,38 @@ class Board
         })
 
         return row
+    }
+
+    updateBoardMap = (map) => {
+        for (let y in map) {
+            for (let idx in map[y]) {
+                const x = Number(map[y][idx])
+
+                this.updateLifeInCellOnBoardMap(x, y)
+            }
+        }
+
+        return this
+    }
+
+    updateLifeInCellOnBoardMap = (x, y) => {
+        this.boardMap[y][x].life = !this.boardMap[y][x].life
+    }
+
+    rerender = () => {
+        const mapForRerender = this.stateManager.creteMapForRerender()
+
+        for (let y in mapForRerender) {
+            if (mapForRerender[y].length) {
+                mapForRerender[y].forEach(x => this.toggleElementCellClassState(document.getElementById(`cell_${x}_${y}`)))
+            }
+        }
+
+        return this
+    }
+
+    toggleElementCellClassState = (element) => {
+        element.classList.toggle('life')
     }
 
     reset = () => {

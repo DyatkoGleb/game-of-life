@@ -93,6 +93,11 @@ class Board
         element.classList.toggle('life')
     }
 
+    updateBoard = (element, x, y) => {
+        this.updateLifeInCellOnBoardMap(x, y)
+        this.toggleElementCellClassState(element)
+    }
+
     reset = () => {
         document.querySelector('.board')?.remove()
 

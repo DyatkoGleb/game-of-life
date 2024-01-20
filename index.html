@@ -4,10 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <title>Game of life</title>
 </head>
+
 <body>
+    <div>
+        <header class="header">
+            <div class="header-wrapper">
+                <a href="" style="margin-right: 10px;">Dyatko</a>
+                <a href="">Game of Life</a>
+            </div>
+        </header>
+
+        <div class="control-panel d-flex justify-content-center flex-column">
+            <div class="d-flex justify-content-center flex-wrap">
+                <input class="input-board-size" id="input-width" type="text" placeholder="Width" autofocus>
+                <input class="input-board-size" id="input-height" type="text" placeholder="Height">
+            </div>
+
+            <div class="d-flex justify-content-center flex-wrap">
+                <button class="btn" id="btn-create-board">Create board</button>
+                <button class="btn" id="btn-generate-random-cells">Random cells</button>
+                <button class="btn" id="btn-start">Start</button>
+            </div>
+        </div>
+
+        <div class="board-wrapper" id="board-wrapper"></div>
+    </div>
 
     <script src="./js/main.js"></script>
 </body>

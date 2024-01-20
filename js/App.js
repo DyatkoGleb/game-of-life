@@ -17,6 +17,7 @@ class App
         this.btnCreateBoard.addEventListener('click', () => this.createBoard())
         this.btnRandomLifeGeneration.addEventListener('click', () => this.createRandomLifeBoard())
         this.btnStart.addEventListener('click', () => this.startNewGame())
+        document.addEventListener('click', (event) => this.updateBoard(event.target))
     }
 
     createBoard = () => {
@@ -36,4 +37,13 @@ class App
     }
 
     startNewGame = () => {}
+
+    updateBoard = (clickedElement) => {
+        if (clickedElement.classList.contains('cell')) {
+            const [_, x, y] = clickedElement.getAttribute('id').split('_')
+
+            this.board.updateBoard(clickedElement, x, y)
+            this.stateManager.updateLifeMap(x, y, true)
+        }
+    }
 }

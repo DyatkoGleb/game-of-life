@@ -14,22 +14,22 @@ class StateManager
             const x = this.utils.getRandomNumber(0, boardWidth - 1)
             const y = this.utils.getRandomNumber(0, boardHeight - 1)
 
-            this.updateLifeMap(this.newLifeMap, x, y)
+            this.updateLifeMap(x, y)
         }
     }
 
-    updateLifeMap = (map, x, y, needRemoveIfExists = false) => {
-        if (!map.hasOwnProperty(y)) {
-            map[y] = []
+    updateLifeMap = (x, y, needRemoveIfExists = false) => {
+        if (!this.newLifeMap.hasOwnProperty(y)) {
+            this.newLifeMap[y] = []
         }
 
         x = Number(x)
         y = String(y)
 
-        if (!map[y].includes(x)) {
-            map[y].push(x)
+        if (!this.newLifeMap[y].includes(x)) {
+            this.newLifeMap[y].push(x)
         } else if (needRemoveIfExists) {
-            this.removeCell(map[y], x)
+            this.removeCell(this.newLifeMap[y], x)
         }
     }
 

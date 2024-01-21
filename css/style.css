@@ -84,6 +84,11 @@ body {
 .timer {
     font-size: 42px;
 }
+.timer::after {
+    content: 'ms';
+    font-size: 10px;
+    color: #777;
+}
 
 .board-wrapper {
     margin: auto;

@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     new ScriptLoader().loadScripts().then(() => {
         const stateManager = new StateManager()
+        const board = new Board(stateManager)
 
-        new App(new Board(stateManager), stateManager)
+        new App(board, stateManager, new Game(board, stateManager))
     }).catch((error) => {
         console.error('Error loading scripts:', error)
     })
@@ -15,6 +16,7 @@ class ScriptLoader {
         './js/models/Board',
         './js/Utils',
         './js/managers/StateManager',
+        './js/Game',
     ]
 
     loadScript = (src) => {

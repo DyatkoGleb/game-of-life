@@ -67,6 +67,12 @@ class StateManager
         return mapForUpdating
     }
 
+    setNewLifeMap = (newLifeMap) => {
+        this.newLifeMap = newLifeMap
+
+        return this
+    }
+
     fixStateBeforeNextGeneration = () => {
         this.oldLifeMap = this.newLifeMap
         this.newLifeMap = {}

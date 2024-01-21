@@ -98,6 +98,10 @@ class Board
         this.toggleElementCellClassState(element)
     }
 
+    makeNewBoardLifeMap = () => {
+        this.updateBoardMap(this.stateManager.mergeOldAndNewLifeMaps())
+    }
+
     reset = () => {
         document.querySelector('.board')?.remove()
 

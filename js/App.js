@@ -6,9 +6,10 @@ class App
     inputWidth = document.getElementById('input-width')
     inputHeight = document.getElementById('input-height')
 
-    constructor (board, stateManager) {
-        this.board = board
+    constructor (board, stateManager, game) {
         this.stateManager = stateManager
+        this.board = board
+        this.game = game
 
         this.setHandlers()
     }
@@ -36,7 +37,9 @@ class App
             .rerender()
     }
 
-    startNewGame = () => {}
+    startNewGame = () => {
+        this.game.start()
+    }
 
     updateBoard = (clickedElement) => {
         if (clickedElement.classList.contains('cell')) {

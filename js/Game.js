@@ -47,23 +47,19 @@ class Game
         }
     }
 
-    isLivingCell = (x, y) => {
-        return this.board.boardMap[y][x].life
-    }
-
-    addCellToMap = (map, x, y) => {
-        if (!map[y]) {
-            map[y] = [x]
-            return
-        }
-
-        map[y] = [...map[y], x]
-    }
-
     addCoordinatesToLifeMap = (x, y) => {
         this.stateManager.updateLifeMap(x, y)
     }
 
+    /**
+     * Проверяет, выживет ли ячейка с заданными координатами в следующем поколении, основываясь на количестве живых соседей.
+     * Если проверяемый сосед - мёртвая клетка - заносит в массив клеток, которые нужно проверить на предмет возможности
+     * зарождения новой жизни.
+     *
+     * @param {number} x
+     * @param {number} y
+     * @returns {boolean}
+     */
     isSurvivor = (x, y) => {
         let counter = 0
 
@@ -75,13 +71,21 @@ class Game
 
                 const [neighborX, neighborY] = this.getNeighborCoordinates(x, y, i, j)
 
-                this.isLivingCell(neighborX, neighborY) ? counter++ : this.addCellToMap(this.mapDeadCells, neighborX, neighborY)
+                this.isLivingCell(neighborX, neighborY) ? counter++ : this.addCellToChecklistForBirthNewLife(this.mapDeadCells, neighborX, neighborY)
             }
         }
 
         return this.ALLOWED_NUMBER_NEIGHBORS_FOR_SURVIVAL.includes(counter)
     }
 
+    /**
+     * Проверяет, зародится ли новая жизнь в ячейке с заданными координатами в следующем поколении, основываясь на
+     * количестве живых соседей.
+     *
+     * @param {number} x
+     * @param {number} y
+     * @returns {boolean}
+     */
     isLifeMustBeBorn = (x, y) => {
         let counter = 0
 
@@ -119,5 +123,18 @@ class Game
         }
 
         return [neighborX, neighborY]
+    }
+
+    isLivingCell = (x, y) => {
+        return this.board.boardMap[y][x].life
+    }
+
+    addCellToChecklistForBirthNewLife = (map, x, y) => {
+        if (!map[y]) {
+            map[y] = [x]
+            return
+        }
+
+        map[y] = [...map[y], x]
     }
 }

@@ -78,7 +78,7 @@ class Board
     }
 
     rerender = () => {
-        const mapForRerender = this.stateManager.creteMapForRerender()
+        const mapForRerender = this.stateManager.createMapForRerender()
 
         for (let y in mapForRerender) {
             if (mapForRerender[y].length) {

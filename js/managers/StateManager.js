@@ -37,7 +37,7 @@ class StateManager
         return list.filter(newX => newX !== x)
     }
 
-    creteMapForRerender = () => {
+    createMapForRerender = () => {
         if (!Object.keys(this.oldLifeMap).length) {
             return this.newLifeMap
         }
@@ -45,6 +45,14 @@ class StateManager
         return this.mergeOldAndNewLifeMaps()
     }
 
+    /**
+     * Генерирует объект c координатами ячеек, которые должны измениться на текущем ходе:
+     * - умереть - те, что были на предыдущей итерации и отсутствуют на текущей,
+     * - родиться - те, которых не было на предыдущей итерации, но появились на текущей.
+     *
+     * @function
+     * @returns {Object<number, number[]>} - Объект c координатами клеток которые нужно "перевернуть"
+     */
     mergeOldAndNewLifeMaps = () => {
         const mapForUpdating = this.utils.deepCopy(this.newLifeMap)
 

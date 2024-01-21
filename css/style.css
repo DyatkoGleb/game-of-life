@@ -12,6 +12,10 @@ body {
     box-sizing: border-box;
 }
 
+.align-center {
+    text-align: center;
+}
+
 .d-flex {
     display: flex;
 }
@@ -70,6 +74,17 @@ body {
     box-shadow: 0 0 8px #285134;
 }
 
+.timer-wrapper {
+    min-width: 135px;
+}
+.label-timer {
+    font-size: 10px;
+    color: #777;
+}
+.timer {
+    font-size: 42px;
+}
+
 .board-wrapper {
     margin: auto;
     max-width: max-content;
@@ -77,6 +92,7 @@ body {
 .board {
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
 }
 .row {
     display: flex;

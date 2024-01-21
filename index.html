@@ -29,6 +29,17 @@
                 <button class="btn" id="btn-generate-random-cells">Random cells</button>
                 <button class="btn" id="btn-start">Start</button>
             </div>
+
+            <div class="d-flex justify-content-center">
+                <div class="timer-wrapper d-flex flex-column">
+                    <span class="timer align-center" id="timer-new-generation">0</span>
+                    <span class="label-timer align-center">Time to a new generation:</span>
+                </div>
+                <div class="timer-wrapper d-flex flex-column">
+                    <span class="label-timer align-center">Time with rerender:</span>
+                    <span class="timer align-center" id="timer-new-generation-with-rerender">0</span>
+                </div>
+            </div>
         </div>
 
         <div class="board-wrapper" id="board-wrapper"></div>

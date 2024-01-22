@@ -15,10 +15,29 @@ class App
     }
 
     setHandlers = () => {
+        document.addEventListener('mousedown', this.handleMouseDown)
+        document.addEventListener('mouseup', this.handleMouseUp)
+        document.addEventListener('mouseover', this.handleMouseOver)
+
         this.btnCreateBoard.addEventListener('click', () => this.createBoard())
         this.btnRandomLifeGeneration.addEventListener('click', () => this.createRandomLifeBoard())
         this.btnStart.addEventListener('click', () => this.startNewGame())
-        document.addEventListener('click', (event) => this.updateBoard(event.target))
+    }
+
+    handleMouseDown = (event) => {
+        this.isMouseDown = true
+
+        this.updateBoard(event.target)
+    }
+
+    handleMouseOver = (event) => {
+        if (this.isMouseDown) {
+            this.updateBoard(event.target)
+        }
+    }
+
+    handleMouseUp = () => {
+        this.isMouseDown = false
     }
 
     createBoard = () => {
@@ -41,11 +60,11 @@ class App
         this.game.start()
     }
 
-    updateBoard = (clickedElement) => {
-        if (clickedElement.classList.contains('cell')) {
-            const [_, x, y] = clickedElement.getAttribute('id').split('_')
+    updateBoard = (element) => {
+        if (element.classList.contains('cell')) {
+            const [_, x, y] = element.getAttribute('id').split('_')
 
-            this.board.updateBoard(clickedElement, x, y)
+            this.board.updateBoard(element, x, y)
             this.stateManager.updateLifeMap(x, y, true)
         }
     }

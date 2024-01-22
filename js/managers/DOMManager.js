@@ -36,7 +36,7 @@ class DOMManager
         }
 
         if (element.classList.contains('cell')) {
-            const [_, x, y] = clickedElement.getAttribute('id').split('_')
+            const [_, x, y] = element.getAttribute('id').split('_')
 
             return this.app.updateBoard(element, x, y)
         }

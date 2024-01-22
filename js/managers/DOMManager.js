@@ -16,8 +16,41 @@ class DOMManager
         this.btnStart = document.getElementById('btn-start')
         this.btnGenerateRandomCells = document.getElementById('btn-generate-random-cells')
 
+        this.setHandlers()
+    }
+
+    setHandlers = () => {
+        document.addEventListener('mousedown', this.handleMouseDown)
+        document.addEventListener('mouseup', this.handleMouseUp)
+        document.addEventListener('mouseover', this.handleMouseOver)
 
         document.addEventListener('click', (event) => this.clickHandlers(event.target))
+    }
+
+    handleMouseDown = (event) => {
+        this.isMouseDown = true
+
+        if (!this.stateManager.isGameProcessing) {
+            this.updateBoard(event.target)
+        }
+    }
+
+    handleMouseOver = (event) => {
+        if (this.isMouseDown && !this.stateManager.isGameProcessing) {
+            this.updateBoard(event.target)
+        }
+    }
+
+    updateBoard = (element) => {
+        if (element.classList.contains('cell')) {
+            const [_, x, y] = element.getAttribute('id').split('_')
+
+            this.app.updateBoard(element, x, y)
+        }
+    }
+
+    handleMouseUp = () => {
+        this.isMouseDown = false
     }
 
     clickHandlers = (element) => {
@@ -47,12 +80,6 @@ class DOMManager
                 return this.app.createRandomLifeBoard()
             case 'btn-start':
                 return this.startStopGame()
-        }
-
-        if (element.classList.contains('cell')) {
-            const [_, x, y] = element.getAttribute('id').split('_')
-
-            return this.app.updateBoard(element, x, y)
         }
 
         if (element.classList.contains('btn-preset')) {

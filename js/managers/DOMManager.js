@@ -1,10 +1,27 @@
 class DOMManager
 {
+    constructor () {
+        this.timerNewGeneration = document.getElementById('timer-new-generation')
+        this.timerNewGenerationWithRerender = document.getElementById('timer-new-generation-with-rerender')
+        this.btnAbout = document.getElementById('btn-about')
+        this.blockAbout = document.getElementById('block-about')
+
+        this.setHandlers()
+    }
+
+    setHandlers = () => {
+        this.btnAbout.addEventListener('click', () => this.showAboutBlock())
+    }
+
     showTimeToNewGeneration = (time) => {
-        document.getElementById('timer-new-generation').textContent = time
+        this.timerNewGeneration.textContent = time
     }
 
     showTimeToNewGenerationWithRerender = (time) => {
-        document.getElementById('timer-new-generation-with-rerender').textContent = time
+        this.timerNewGenerationWithRerender.textContent = time
+    }
+
+    showAboutBlock = () => {
+        this.blockAbout.classList.toggle('active')
     }
 }

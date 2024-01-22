@@ -10,6 +10,26 @@ body {
     text-decoration: none;
     outline: none;
     box-sizing: border-box;
+    font-size: 14px;
+}
+
+hr {
+    margin: 1rem 0;
+    color: #383838;
+    border: 0;
+    border-top: 1px solid;
+}
+
+h4 {
+    margin-bottom: 10px;
+}
+
+ul {
+    margin: 10px 0;
+}
+
+li {
+    list-style-position: inside;
 }
 
 .align-center {
@@ -22,15 +42,24 @@ body {
 .justify-content-center {
     justify-content: center;
 }
+.justify-content-between {
+    justify-content: space-between;
+}
 .flex-wrap {
     flex-wrap: wrap;
 }
 .flex-column {
     flex-direction: column;
 }
+.mr-10 {
+    margin-right: 10px;
+}
 
 .header {
+    position: fixed;
+    top: 0;
     margin-bottom: 20px;
+    width: 100vw;
     height: 50px;
     background-color: #080808;
     line-height: 50px;
@@ -42,8 +71,59 @@ body {
     font-size: 20px;
     color: #ffffff;
 }
+.btn-about {
+    background: none;
+    border: none;
+    line-height: 50px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: .1s;
+}
+.btn-about:hover,
+.btn-about:focus {
+    color: #7effa5;
+}
+.block-about {
+    position: fixed;
+    top: 50px;
+    right: -400px;
+    max-width: 400px;
+    height: calc(100vh - 50px);
+    padding: 20px 30px;
+    margin-bottom: 20px;
+    background-color: #080808;
+    color: #eeeeee;
+    user-select: none;
+    overflow: auto;
+    transition: .3s;
+    z-index: 2;
+}
+.block-about.active {
+    right: 0;
+}
+.block-about__title {
+    font-size: 20px;
+}
+.github-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+    background-image: url('https://github.githubassets.com/favicons/favicon-dark.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.link-to-github-repository-wrapper {
+    margin: 5px 0;
+}
+.project-tools:hover {
+    text-decoration: underline;
+}
+.project-tools {
+    color: #808080;
+}
 
 .control-panel {
+    margin-top: 50px;
     padding: 0 50px;
 }
 .input-board-size {

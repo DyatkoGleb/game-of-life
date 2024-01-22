@@ -4,27 +4,12 @@ class App
         this.stateManager = stateManager
         this.board = board
         this.game = game
-
-        this.btnRandomLifeGeneration = document.getElementById('btn-generate-random-cells')
-        this.btnCreateBoard = document.getElementById('btn-create-board')
-        this.btnStart = document.getElementById('btn-start')
-        this.inputWidth = document.getElementById('input-width')
-        this.inputHeight = document.getElementById('input-height')
-
-        this.setHandlers()
     }
 
-    setHandlers = () => {
-        this.btnCreateBoard.addEventListener('click', () => this.createBoard())
-        this.btnRandomLifeGeneration.addEventListener('click', () => this.createRandomLifeBoard())
-        this.btnStart.addEventListener('click', () => this.startNewGame())
-        document.addEventListener('click', (event) => this.updateBoard(event.target))
-    }
-
-    createBoard = () => {
+    createBoard = (width, height) => {
         this.board
             .reset()
-            .setSize(this.inputWidth.value, this.inputHeight.value)
+            .setSize(width, height)
             .makeBoardMap()
             .draw()
     }
@@ -41,13 +26,9 @@ class App
         this.game.start()
     }
 
-    updateBoard = (clickedElement) => {
-        if (clickedElement.classList.contains('cell')) {
-            const [_, x, y] = clickedElement.getAttribute('id').split('_')
-
-            this.board.updateBoard(clickedElement, x, y)
-            this.stateManager.updateLifeMap(x, y, true)
-        }
+    updateBoard = (clickedElement, x, y) => {
+        this.board.updateBoard(clickedElement, x, y)
+        this.stateManager.updateLifeMap(x, y, true)
     }
 
     setPreset = ({ width, height, preset}) => {

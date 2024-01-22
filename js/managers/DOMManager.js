@@ -8,22 +8,16 @@ class DOMManager
         this.app = app
 
 
-        this.btnAbout = document.getElementById('btn-about')
         this.blockAbout = document.getElementById('block-about')
-        this.btnPresets = document.getElementById('btn-presets')
         this.blockPresets = document.getElementById('block-presets')
+        this.inputWidth = document.getElementById('input-width')
+        this.inputHeight = document.getElementById('input-height')
 
-        this.setHandlers()
+
+        document.addEventListener('click', (event) => this.clickHandlers(event.target))
     }
 
-    setHandlers = () => {
-        this.btnAbout.addEventListener('click', () => this.showAboutBlock())
-        this.btnPresets.addEventListener('click', () => this.showPresetsBlock())
-
-        document.addEventListener('click', (event) => this.elementsHandler(event.target))
-    }
-
-    elementsHandler = (element) => {
+    clickHandlers = (element) => {
         if (element.classList.contains('btn-preset')) {
             switch (element.id) {
                 case 'preset-glasses':
@@ -39,6 +33,25 @@ class DOMManager
                 case 'preset-gosper-glider-gun':
                     return this.app.setPreset(this.presetStorage.gosperGliderGun())
             }
+        }
+
+        if (element.classList.contains('cell')) {
+            const [_, x, y] = clickedElement.getAttribute('id').split('_')
+
+            return this.app.updateBoard(element, x, y)
+        }
+
+        switch (element.id) {
+            case 'btn-about':
+                return this.showAboutBlock()
+            case 'btn-presets':
+                return this.showPresetsBlock()
+            case 'btn-create-board':
+                return this.app.createBoard(this.inputWidth.value, this.inputHeight.value)
+            case 'btn-generate-random-cells':
+                return this.app.createRandomLifeBoard()
+            case 'btn-start':
+                return this.app.startNewGame()
         }
     }
 

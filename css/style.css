@@ -87,6 +87,9 @@ button {
     font-size: 20px;
     color: #ffffff;
 }
+.logo {
+    font-size: 20px;
+}
 .btn-presets, .btn-about {
     margin-left: 10px;
     line-height: 50px;

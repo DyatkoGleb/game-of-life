@@ -3,6 +3,8 @@ class StateManager
     oldLifeMap = {}
     newLifeMap = {}
 
+    isGameProcessing = false
+
     constructor () {
         this.utils = new Utils()
     }

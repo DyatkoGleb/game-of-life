@@ -3,8 +3,9 @@ class DOMManager
     isAboutBlockActive = false
     isPresetsBlockActive = false
 
-    constructor (app, presetStorage) {
+    constructor (app, presetStorage, stateManager) {
         this.presetStorage = presetStorage
+        this.stateManager = stateManager
         this.app = app
 
 
@@ -12,6 +13,7 @@ class DOMManager
         this.blockPresets = document.getElementById('block-presets')
         this.inputWidth = document.getElementById('input-width')
         this.inputHeight = document.getElementById('input-height')
+        this.btnStart = document.getElementById('btn-start')
 
 
         document.addEventListener('click', (event) => this.clickHandlers(event.target))
@@ -51,7 +53,7 @@ class DOMManager
             case 'btn-generate-random-cells':
                 return this.app.createRandomLifeBoard()
             case 'btn-start':
-                return this.app.startNewGame()
+                return this.startStopGame()
         }
     }
 
@@ -73,5 +75,17 @@ class DOMManager
         }
 
         this.isPresetsBlockActive = !this.isPresetsBlockActive
+    }
+
+    startStopGame = () => {
+        this.stateManager.isGameProcessing = !this.stateManager.isGameProcessing
+
+        if (this.stateManager.isGameProcessing) {
+            this.btnStart.innerText = 'Stop'
+        } else {
+            this.btnStart.innerText = 'Start'
+        }
+
+        this.app.startNewGame()
     }
 }

@@ -14,12 +14,47 @@ class DOMManager
         this.inputWidth = document.getElementById('input-width')
         this.inputHeight = document.getElementById('input-height')
         this.btnStart = document.getElementById('btn-start')
+        this.btnGenerateRandomCells = document.getElementById('btn-generate-random-cells')
 
 
         document.addEventListener('click', (event) => this.clickHandlers(event.target))
     }
 
     clickHandlers = (element) => {
+        switch (element.id) {
+            case 'btn-about':
+                return this.showAboutBlock()
+            case 'btn-presets':
+                return this.showPresetsBlock()
+            case 'btn-create-board':
+                return this.app.createBoard(this.inputWidth.value, this.inputHeight.value)
+            case 'btn-start':
+                return this.startStopGame()
+        }
+
+        if (this.stateManager.isGameProcessing) {
+            return
+        }
+
+        switch (element.id) {
+            case 'btn-about':
+                return this.showAboutBlock()
+            case 'btn-presets':
+                return this.showPresetsBlock()
+            case 'btn-create-board':
+                return this.app.createBoard(this.inputWidth.value, this.inputHeight.value)
+            case 'btn-generate-random-cells':
+                return this.app.createRandomLifeBoard()
+            case 'btn-start':
+                return this.startStopGame()
+        }
+
+        if (element.classList.contains('cell')) {
+            const [_, x, y] = element.getAttribute('id').split('_')
+
+            return this.app.updateBoard(element, x, y)
+        }
+
         if (element.classList.contains('btn-preset')) {
             switch (element.id) {
                 case 'preset-glasses':
@@ -35,25 +70,6 @@ class DOMManager
                 case 'preset-gosper-glider-gun':
                     return this.app.setPreset(this.presetStorage.gosperGliderGun())
             }
-        }
-
-        if (element.classList.contains('cell')) {
-            const [_, x, y] = element.getAttribute('id').split('_')
-
-            return this.app.updateBoard(element, x, y)
-        }
-
-        switch (element.id) {
-            case 'btn-about':
-                return this.showAboutBlock()
-            case 'btn-presets':
-                return this.showPresetsBlock()
-            case 'btn-create-board':
-                return this.app.createBoard(this.inputWidth.value, this.inputHeight.value)
-            case 'btn-generate-random-cells':
-                return this.app.createRandomLifeBoard()
-            case 'btn-start':
-                return this.startStopGame()
         }
     }
 
@@ -82,8 +98,10 @@ class DOMManager
 
         if (this.stateManager.isGameProcessing) {
             this.btnStart.innerText = 'Stop'
+            this.btnGenerateRandomCells.classList = 'inactive-btn'
         } else {
             this.btnStart.innerText = 'Start'
+            this.btnGenerateRandomCells.classList = 'btn'
         }
 
         this.app.startNewGame()

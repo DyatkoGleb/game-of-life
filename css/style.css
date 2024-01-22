@@ -165,7 +165,8 @@ button {
 .input-board-size:focus {
     border-bottom: 1px solid #7effa5;
 }
-.btn {
+.btn,
+.inactive-btn {
     margin: 15px;
     padding: 10px 15px;
     background: none;
@@ -174,6 +175,10 @@ button {
     border-radius: 20px;
     cursor: pointer;
     transition: .1s;
+}
+.inactive-btn {
+    color: #777;
+    cursor: initial;
 }
 .btn:hover, .btn:focus {
     color: #7effa5;

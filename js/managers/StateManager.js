@@ -31,7 +31,7 @@ class StateManager
         if (!this.newLifeMap[y].includes(x)) {
             this.newLifeMap[y].push(x)
         } else if (needRemoveIfExists) {
-            this.removeCell(this.newLifeMap[y], x)
+            this.newLifeMap[y] = this.removeCell(this.newLifeMap[y], x)
         }
     }
 

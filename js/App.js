@@ -1,15 +1,15 @@
 class App
 {
-    btnRandomLifeGeneration = document.getElementById('btn-generate-random-cells')
-    btnCreateBoard = document.getElementById('btn-create-board')
-    btnStart = document.getElementById('btn-start')
-    inputWidth = document.getElementById('input-width')
-    inputHeight = document.getElementById('input-height')
-
     constructor (board, stateManager, game) {
         this.stateManager = stateManager
         this.board = board
         this.game = game
+
+        this.btnRandomLifeGeneration = document.getElementById('btn-generate-random-cells')
+        this.btnCreateBoard = document.getElementById('btn-create-board')
+        this.btnStart = document.getElementById('btn-start')
+        this.inputWidth = document.getElementById('input-width')
+        this.inputHeight = document.getElementById('input-height')
 
         this.setHandlers()
     }

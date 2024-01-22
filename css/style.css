@@ -32,6 +32,16 @@ li {
     list-style-position: inside;
 }
 
+::-webkit-scrollbar {
+    background: #080808;
+    height: 8px;
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(100deg, #7effa5, #7eabff);
+    border-radius: 8px;
+}
+
 .align-center {
     text-align: center;
 }

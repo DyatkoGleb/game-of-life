@@ -4,10 +4,20 @@ class Game
     ALLOWED_NUMBER_NEIGHBORS_FOR_NEW_LIFE = 3
     mapDeadCells = []
 
-    constructor (board, stateManager, domManager) {
+    constructor (board, stateManager) {
         this.stateManager = stateManager
-        this.domManager = domManager
         this.board = board
+
+        this.timerNewGeneration = document.getElementById('timer-new-generation')
+        this.timerNewGenerationWithRerender = document.getElementById('timer-new-generation-with-rerender')
+    }
+
+    showTimeToNewGeneration = (time) => {
+        this.timerNewGeneration.textContent = time
+    }
+
+    showTimeToNewGenerationWithRerender = (time) => {
+        this.timerNewGenerationWithRerender.textContent = time
     }
 
     start = async () => {
@@ -16,12 +26,12 @@ class Game
         await this.stateManager.fixStateBeforeNextGeneration()
             .setNewLifeMap(this.createNewLifeMap())
 
-        this.domManager.showTimeToNewGeneration(new Date().getTime() - startTime)
+        this.showTimeToNewGeneration(new Date().getTime() - startTime)
 
         await this.board.rerender()
             .makeNewBoardLifeMap()
 
-        this.domManager.showTimeToNewGenerationWithRerender(new Date().getTime() - startTime)
+        this.showTimeToNewGenerationWithRerender(new Date().getTime() - startTime)
 
         requestAnimationFrame(() => this.start())
     }

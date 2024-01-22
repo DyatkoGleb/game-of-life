@@ -49,4 +49,15 @@ class App
             this.stateManager.updateLifeMap(x, y, true)
         }
     }
+
+    setPreset = ({ width, height, preset}) => {
+        this.stateManager.newLifeMap = preset
+
+        this.board
+            .reset()
+            .setSize(width, height)
+            .makeBoardMap()
+            .updateBoardMap(this.stateManager.newLifeMap)
+            .draw()
+    }
 }

@@ -32,6 +32,12 @@ li {
     list-style-position: inside;
 }
 
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 ::-webkit-scrollbar {
     background: #080808;
     height: 8px;
@@ -81,19 +87,20 @@ li {
     font-size: 20px;
     color: #ffffff;
 }
-.btn-about {
-    background: none;
-    border: none;
+.btn-presets, .btn-about {
+    margin-left: 10px;
     line-height: 50px;
     color: #ffffff;
-    cursor: pointer;
     transition: .1s;
 }
+.btn-presets:hover,
+.btn-presets:focus,
 .btn-about:hover,
 .btn-about:focus {
     color: #7effa5;
 }
-.block-about {
+
+.block-presets, .block-about {
     position: fixed;
     top: 50px;
     right: -400px;
@@ -108,9 +115,11 @@ li {
     transition: .3s;
     z-index: 2;
 }
+.block-presets.active,
 .block-about.active {
     right: 0;
 }
+.block-presets__title,
 .block-about__title {
     font-size: 20px;
 }
@@ -130,6 +139,10 @@ li {
 }
 .project-tools {
     color: #808080;
+}
+.btn-preset {
+    margin-bottom: 10px;
+    color: #7effa5;
 }
 
 .control-panel {

@@ -7,24 +7,7 @@ class Game
     constructor (board, stateManager) {
         this.stateManager = stateManager
         this.board = board
-
-        this.counterNewGeneration = document.getElementById('counter-new-generation')
-        this.counterNewGenerationWithRerender = document.getElementById('counter-new-generation-with-rerender')
-        this.counterGeneration = document.getElementById('counter-generation')
     }
-
-    showTimeToNewGeneration = (time) => {
-        this.counterNewGeneration.textContent = time
-    }
-
-    showTimeToNewGenerationWithRerender = (time) => {
-        this.counterNewGenerationWithRerender.textContent = time
-    }
-
-    showNumberOfGeneration = (num) => {
-        this.counterGeneration.textContent = num
-    }
-
     start = async () => {
         const startTime = new Date().getTime()
 
@@ -32,14 +15,14 @@ class Game
             .setNewLifeMap(this.createNewLifeMap())
             .setGenerationNumber(this.stateManager.generationNumber + 1)
 
-        this.showNumberOfGeneration(this.stateManager.generationNumber)
+        this.stateManager.showNumberOfGeneration(this.stateManager.generationNumber)
 
-        this.showTimeToNewGeneration(new Date().getTime() - startTime)
+        this.stateManager.showTimeToNewGeneration(new Date().getTime() - startTime)
 
         await this.board.rerender()
             .makeNewBoardLifeMap()
 
-        this.showTimeToNewGenerationWithRerender(new Date().getTime() - startTime)
+        this.stateManager.showTimeToNewGenerationWithRerender(new Date().getTime() - startTime)
 
         if (!Object.keys(this.stateManager.oldLifeMap).length) {
             this.stateManager.isGameProcessing = false

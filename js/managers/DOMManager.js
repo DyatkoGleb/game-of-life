@@ -8,6 +8,12 @@ class DOMManager
         this.stateManager = stateManager
         this.app = app
 
+        this.initDOMElements()
+
+        this.setHandlers()
+    }
+
+    initDOMElements = () => {
         this.blockAbout = document.getElementById('block-about')
         this.blockPresets = document.getElementById('block-presets')
         this.inputWidth = document.getElementById('input-width')
@@ -15,12 +21,16 @@ class DOMManager
         this.btnStart = document.getElementById('btn-start')
         this.btnCreateBoard = document.getElementById('btn-create-board')
         this.btnGenerateRandomCells = document.getElementById('btn-generate-random-cells')
-
-        this.setHandlers()
+        this.counterNewGeneration = document.getElementById('counter-new-generation')
+        this.counterNewGenerationWithRerender = document.getElementById('counter-new-generation-with-rerender')
+        this.counterGeneration = document.getElementById('counter-generation')
     }
 
     setHandlers = () => {
         this.stateManager.setStoppedGameHandler(this.stoppedGameHandler)
+        this.stateManager.showNumberOfGeneration(this.showNumberOfGeneration)
+        this.stateManager.showTimeToNewGeneration(this.showTimeToNewGeneration)
+        this.stateManager.showTimeToNewGenerationWithRerender(this.showTimeToNewGenerationWithRerender)
 
         document.addEventListener('mousedown', this.handleMouseDown)
         document.addEventListener('mouseup', this.handleMouseUp)
@@ -135,4 +145,17 @@ class DOMManager
 
         this.app.startNewGame()
     }
+
+    showTimeToNewGeneration = (time) => {
+        this.counterNewGeneration.textContent = time
+    }
+
+    showTimeToNewGenerationWithRerender = (time) => {
+        this.counterNewGenerationWithRerender.textContent = time
+    }
+
+    showNumberOfGeneration = (num) => {
+        this.counterGeneration.textContent = num
+    }
+
 }

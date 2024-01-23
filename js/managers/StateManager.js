@@ -117,6 +117,18 @@ class StateManager
         this.generationNumber = generationNumber
     }
 
+    showNumberOfGeneration = (func) => {
+        this.showNumberOfGeneration = func
+    }
+
+    showTimeToNewGeneration = (func) => {
+        this.showTimeToNewGeneration = func
+    }
+
+    showTimeToNewGenerationWithRerender = (func) => {
+        this.showTimeToNewGenerationWithRerender = func
+    }
+
     reset = () => {
         this.oldLifeMap = {}
         this.newLifeMap = {}

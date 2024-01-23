@@ -39,11 +39,12 @@ class App
     }
 
     setPreset = ({ width, height, preset }) => {
+        this.board.reset()
+
         this.stateManager.newLifeMap = preset
 
         this.board
-            .clearBoard()
-            .setSize(width, height)
+            .setNewSize(width, height)
             .makeBoardMap()
             .updateBoardMap(this.stateManager.newLifeMap)
             .draw()

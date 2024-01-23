@@ -3,10 +3,26 @@ class StateManager
     oldLifeMap = {}
     newLifeMap = {}
 
-    isGameProcessing = false
+    _isGameProcessing = false
 
     constructor () {
         this.utils = new Utils()
+    }
+
+    set isGameProcessing (processing) {
+        this._isGameProcessing = processing
+
+        if (!processing) {
+            this.stoppedGameHandler()
+        }
+    }
+
+    get isGameProcessing() {
+        return this._isGameProcessing;
+    }
+
+    setStoppedGameHandler = (stoppedGameHandler) => {
+        this.stoppedGameHandler = stoppedGameHandler
     }
 
     generateRandomLifeMap = (boardWidth, boardHeight) => {

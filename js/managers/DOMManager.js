@@ -8,7 +8,6 @@ class DOMManager
         this.stateManager = stateManager
         this.app = app
 
-
         this.blockAbout = document.getElementById('block-about')
         this.blockPresets = document.getElementById('block-presets')
         this.inputWidth = document.getElementById('input-width')
@@ -21,6 +20,8 @@ class DOMManager
     }
 
     setHandlers = () => {
+        this.stateManager.setStoppedGameHandler(this.stoppedGameHandler)
+
         document.addEventListener('mousedown', this.handleMouseDown)
         document.addEventListener('mouseup', this.handleMouseUp)
         document.addEventListener('mouseover', this.handleMouseOver)
@@ -115,6 +116,12 @@ class DOMManager
         this.isPresetsBlockActive = !this.isPresetsBlockActive
     }
 
+    stoppedGameHandler = () => {
+        this.btnStart.innerText = 'Start'
+        this.btnCreateBoard.classList = 'btn'
+        this.btnGenerateRandomCells.classList = 'btn'
+    }
+
     startStopGame = () => {
         this.stateManager.isGameProcessing = !this.stateManager.isGameProcessing
 
@@ -123,9 +130,7 @@ class DOMManager
             this.btnCreateBoard.classList = 'inactive-btn'
             this.btnGenerateRandomCells.classList = 'inactive-btn'
         } else {
-            this.btnStart.innerText = 'Start'
-            this.btnCreateBoard.classList = 'btn'
-            this.btnGenerateRandomCells.classList = 'btn'
+            this.stoppedGameHandler()
         }
 
         this.app.startNewGame()

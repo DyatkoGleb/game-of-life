@@ -33,10 +33,13 @@ class Game
 
         this.showTimeToNewGenerationWithRerender(new Date().getTime() - startTime)
 
+        if (!Object.keys(this.stateManager.oldLifeMap).length) {
+            this.stateManager.isGameProcessing = false
+            return
+        }
+
         if (this.stateManager.isGameProcessing) {
             requestAnimationFrame(() => this.start())
-        } else {
-            return
         }
     }
 

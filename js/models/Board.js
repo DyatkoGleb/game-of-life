@@ -102,10 +102,16 @@ class Board
         this.updateBoardMap(this.stateManager.mergeOldAndNewLifeMaps())
     }
 
-    reset = () => {
+    clearBoard = () => {
         document.querySelector('.board')?.remove()
 
         this.boardMap = []
+
+        return this
+    }
+
+    reset = () => {
+        this.clearBoard()
 
         this.stateManager.reset()
 

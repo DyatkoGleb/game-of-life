@@ -134,9 +134,6 @@ button {
     background-repeat: no-repeat;
     background-size: 100%;
 }
-.link-to-github-repository-wrapper {
-    margin: 5px 0;
-}
 .project-tools:hover {
     text-decoration: underline;
 }

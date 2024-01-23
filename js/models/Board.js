@@ -10,9 +10,13 @@ class Board
         this.makeBoardMap()
     }
 
-    setSize = (width, height) => {
-        this.width = width
-        this.height = height
+    setSize = (width = 30, height = 30) => {
+        if (width && !this.width) {
+            this.width = width
+        }
+        if (height && !this.height) {
+            this.height = height
+        }
 
         return this
     }

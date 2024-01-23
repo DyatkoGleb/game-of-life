@@ -15,11 +15,17 @@ class App
     }
 
     createRandomLifeBoard = () => {
+        this.board
+            .reset()
+            .setSize()
+            .makeBoardMap()
+
         this.stateManager.fixStateBeforeNextGeneration()
             .generateRandomLifeMap(this.board.width, this.board.height)
 
-        this.board.updateBoardMap(this.stateManager.mergeOldAndNewLifeMaps())
-            .rerender()
+        this.board
+            .updateBoardMap(this.stateManager.mergeOldAndNewLifeMaps())
+            .draw()
     }
 
     startNewGame = () => {

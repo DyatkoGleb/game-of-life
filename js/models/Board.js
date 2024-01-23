@@ -107,6 +107,8 @@ class Board
 
         this.boardMap = []
 
+        this.stateManager.reset()
+
         return this
     }
 }

@@ -11,10 +11,25 @@ class Board
     }
 
     setSize = (width = 30, height = 30) => {
-        if (width && !this.width) {
+        if (!this.width) {
             this.width = width
         }
-        if (height && !this.height) {
+        if (!this.height) {
+            this.height = height
+        }
+
+        return this
+    }
+
+    setNewSize = (width, height) => {
+        if (!width) {
+            this.width = 20
+        } else {
+            this.width = width
+        }
+        if (!height) {
+            this.height = 20
+        } else {
             this.height = height
         }
 

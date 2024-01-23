@@ -4,12 +4,14 @@ class App
         this.stateManager = stateManager
         this.board = board
         this.game = game
+
+        this.createBoard()
     }
 
     createBoard = (width, height) => {
         this.board
             .reset()
-            .setSize(width, height)
+            .setNewSize(width, height)
             .makeBoardMap()
             .draw()
     }
@@ -17,7 +19,6 @@ class App
     createRandomLifeBoard = () => {
         this.board
             .reset()
-            .setSize()
             .makeBoardMap()
 
         this.stateManager.fixStateBeforeNextGeneration()

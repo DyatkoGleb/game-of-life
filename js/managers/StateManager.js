@@ -4,6 +4,7 @@ class StateManager
     newLifeMap = {}
 
     _isGameProcessing = false
+    generationNumber = 0
 
     constructor () {
         this.utils = new Utils()
@@ -112,8 +113,14 @@ class StateManager
         return this
     }
 
+    setGenerationNumber = (generationNumber) => {
+        this.generationNumber = generationNumber
+    }
+
     reset = () => {
         this.oldLifeMap = {}
         this.newLifeMap = {}
+
+        this.setGenerationNumber(0)
     }
 }

@@ -8,16 +8,21 @@ class Game
         this.stateManager = stateManager
         this.board = board
 
-        this.timerNewGeneration = document.getElementById('timer-new-generation')
-        this.timerNewGenerationWithRerender = document.getElementById('timer-new-generation-with-rerender')
+        this.counterNewGeneration = document.getElementById('counter-new-generation')
+        this.counterNewGenerationWithRerender = document.getElementById('counter-new-generation-with-rerender')
+        this.counterGeneration = document.getElementById('counter-generation')
     }
 
     showTimeToNewGeneration = (time) => {
-        this.timerNewGeneration.textContent = time
+        this.counterNewGeneration.textContent = time
     }
 
     showTimeToNewGenerationWithRerender = (time) => {
-        this.timerNewGenerationWithRerender.textContent = time
+        this.counterNewGenerationWithRerender.textContent = time
+    }
+
+    showNumberOfGeneration = (num) => {
+        this.counterGeneration.textContent = num
     }
 
     start = async () => {
@@ -25,6 +30,9 @@ class Game
 
         await this.stateManager.fixStateBeforeNextGeneration()
             .setNewLifeMap(this.createNewLifeMap())
+            .setGenerationNumber(this.stateManager.generationNumber + 1)
+
+        this.showNumberOfGeneration(this.stateManager.generationNumber)
 
         this.showTimeToNewGeneration(new Date().getTime() - startTime)
 

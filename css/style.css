@@ -182,14 +182,14 @@ button {
     box-shadow: 0 0 8px #285134;
 }
 
-.timer-wrapper {
+.counter-wrapper {
     min-width: 135px;
 }
-.label-timer {
+.label-counter {
     font-size: 10px;
     color: #777;
 }
-.timer {
+.counter {
     font-size: 42px;
 }
 .timer::after {

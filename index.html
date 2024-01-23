@@ -11,109 +11,111 @@
 </head>
 
 <body>
-    <div>
-        <header class="header">
-            <div class="header-wrapper d-flex justify-content-between">
-                <div>
-                    <a class="logo mr-10" href="http://dyatko.space">Dyatko</a>
-                    <a class="logo"href="http://gameoflife.dyatko.space">Game of Life</a>
-                </div>
-                <div class="about-project">
-                    <button class="btn-presets" id="btn-presets">Preset</button>
-                    <button class="btn-about" id="btn-about">About</button>
-                </div>
+    <header class="header">
+        <div class="header-wrapper d-flex justify-content-between">
+            <div>
+                <a class="logo mr-10" href="http://dyatko.space">Dyatko</a>
+                <a class="logo" href="http://gameoflife.dyatko.space">Game of Life</a>
             </div>
-        </header>
-
-        <div class="block-presets" id="block-presets">
-            <div class="block-presets__title">Presets</div>
-            <hr>
-            <div class="d-flex flex-column">
-                <button class="btn-preset" id="preset-glasses">Glasses</button>
-                <button class="btn-preset" id="preset-heptapole">Heptapole</button>
-                <button class="btn-preset" id="preset-figure-eight">Figure-8</button>
-                <button class="btn-preset" id="preset-pulsar">Pulsar</button>
-                <button class="btn-preset" id="preset-hammerhead">Hammerhead</button>
-                <button class="btn-preset" id="preset-gosper-glider-gun">Gosper glider gun</button>
+            <div class="about-project">
+                <button class="btn-presets" id="btn-presets">Presets</button>
+                <button class="btn-about" id="btn-about">About</button>
             </div>
         </div>
+    </header>
 
-        <div class="block-about" id="block-about">
-            <div class="block-about__title">Game of life</div>
-            <hr>
-            <div>
-                <p>
-                    The Game of Life, also known simply as Life, is a cellular automaton devised by the British
-                    mathematician John Horton Conway in 1970. It is a zero-player game, meaning that its evolution is
-                    determined by its initial state, requiring no further input. One interacts with the Game of Life by
-                    creating an initial configuration and observing how it evolves. It is Turing complete and can
-                    simulate a universal constructor or any other Turing machine.
-                </p>
-                <hr>
-                <h4>Rules</h4>
-                <p>
-                    The universe of the Game of Life is an infinite, two-dimensional orthogonal grid of square cells,
-                    each of which is in one of two possible states, live or dead (or populated and unpopulated,
-                    respectively). Every cell interacts with its eight neighbours, which are the cells that are
-                    horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions
-                    occur:
-                </p>
-                <ul>
-                    <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
-                    <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
-                    <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
-                    <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
-                </ul>
-                <p>
-                    The initial pattern constitutes the seed of the system. The first generation is created by applying
-                    the above rules simultaneously to every cell in the seed, live or dead; births and deaths occur
-                    simultaneously, and the discrete moment at which this happens is sometimes called a tick. Each
-                    generation is a pure function of the preceding one. The rules continue to be applied repeatedly to
-                    create further generations.
-                </p>
+    <div class="control-panel d-flex justify-content-center flex-column">
+        <div class="d-flex justify-content-center flex-wrap">
+            <input class="input-board-size" id="input-width" type="text" placeholder="Width" autofocus>
+            <input class="input-board-size" id="input-height" type="text" placeholder="Height">
+        </div>
+
+        <div class="d-flex justify-content-center flex-wrap">
+            <button class="btn" id="btn-create-board">Create board</button>
+            <button class="btn" id="btn-generate-random-cells">Random cells</button>
+            <button class="btn" id="btn-start">Start</button>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="counter-wrapper d-flex flex-column">
+                <span class="counter timer align-center" id="counter-new-generation">0</span>
+                <span class="label-counter align-center">Time to a new generation:</span>
             </div>
+            <div class="counter-wrapper d-flex flex-column">
+                <span class="label-counter align-center">Time with rerender:</span>
+                <span class="counter timer align-center" id="counter-new-generation-with-rerender">0</span>
+            </div>
+            <div class="counter-wrapper d-flex flex-column">
+                <span class="counter align-center" id="counter-generation">0</span>
+                <span class="label-counter align-center">Generation count:</span>
+            </div>
+        </div>
+    </div>
 
+    <div class="board-wrapper" id="board-wrapper"></div>
+
+    <div class="block-presets" id="block-presets">
+        <div class="block-presets__title">Presets</div>
+        <hr>
+        <div class="d-flex flex-column">
+            <button class="btn-preset" id="preset-glasses">Glasses</button>
+            <button class="btn-preset" id="preset-heptapole">Heptapole</button>
+            <button class="btn-preset" id="preset-figure-eight">Figure-8</button>
+            <button class="btn-preset" id="preset-pulsar">Pulsar</button>
+            <button class="btn-preset" id="preset-hammerhead">Hammerhead</button>
+            <button class="btn-preset" id="preset-gosper-glider-gun">Gosper glider gun</button>
+        </div>
+    </div>
+
+    <div class="block-about" id="block-about">
+        <div class="block-about__title">Game of life</div>
+        <hr>
+        <div>
+            <p>
+                The Game of Life, also known simply as Life, is a cellular automaton devised by the British
+                mathematician John Horton Conway in 1970. It is a zero-player game, meaning that its evolution is
+                determined by its initial state, requiring no further input. One interacts with the Game of Life by
+                creating an initial configuration and observing how it evolves. It is Turing complete and can
+                simulate a universal constructor or any other Turing machine.
+            </p>
             <hr>
+            <h4>Rules</h4>
+            <p>
+                The universe of the Game of Life is an infinite, two-dimensional orthogonal grid of square cells,
+                each of which is in one of two possible states, live or dead (or populated and unpopulated,
+                respectively). Every cell interacts with its eight neighbours, which are the cells that are
+                horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions
+                occur:
+            </p>
+            <ul>
+                <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
+                <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+                <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+                <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+            </ul>
+            <p>
+                The initial pattern constitutes the seed of the system. The first generation is created by applying
+                the above rules simultaneously to every cell in the seed, live or dead; births and deaths occur
+                simultaneously, and the discrete moment at which this happens is sometimes called a tick. Each
+                generation is a pure function of the preceding one. The rules continue to be applied repeatedly to
+                create further generations.
+            </p>
+        </div>
 
-            <div>
-                <a
+        <hr>
+
+        <div>
+            <a
                     href="https://github.com/DyatkoGleb/game-of-life"
                     target="_blank"
                     tabindex="-1"
-                >
-                    <div class="d-flex">
-                        <div class="github-icon"></div>
-                        <span class="project-tools">HTML, CSS, JS</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="control-panel d-flex justify-content-center flex-column">
-            <div class="d-flex justify-content-center flex-wrap">
-                <input class="input-board-size" id="input-width" type="text" placeholder="Width" autofocus>
-                <input class="input-board-size" id="input-height" type="text" placeholder="Height">
-            </div>
-
-            <div class="d-flex justify-content-center flex-wrap">
-                <button class="btn" id="btn-create-board">Create board</button>
-                <button class="btn" id="btn-generate-random-cells">Random cells</button>
-                <button class="btn" id="btn-start">Start</button>
-            </div>
-
-            <div class="d-flex justify-content-center">
-                <div class="timer-wrapper d-flex flex-column">
-                    <span class="timer align-center" id="timer-new-generation">0</span>
-                    <span class="label-timer align-center">Time to a new generation:</span>
+            >
+                <div class="d-flex">
+                    <div class="github-icon"></div>
+                    <span class="project-tools">HTML, CSS, JS</span>
                 </div>
-                <div class="timer-wrapper d-flex flex-column">
-                    <span class="label-timer align-center">Time with rerender:</span>
-                    <span class="timer align-center" id="timer-new-generation-with-rerender">0</span>
-                </div>
-            </div>
+            </a>
         </div>
-
-        <div class="board-wrapper" id="board-wrapper"></div>
     </div>
 
     <script src="./js/main.js"></script>

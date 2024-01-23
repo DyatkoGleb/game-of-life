@@ -31,12 +31,18 @@ class StateManager
         if (!this.newLifeMap[y].includes(x)) {
             this.newLifeMap[y].push(x)
         } else if (needRemoveIfExists) {
-            this.newLifeMap[y] = this.removeCell(this.newLifeMap[y], x)
+            this.newLifeMap = this.removeCell(this.newLifeMap, y, x)
         }
     }
 
-    removeCell = (list, x) => {
-        return list.filter(newX => newX !== x)
+    removeCell = (map, y, x) => {
+        map[y] = map[y].filter(newX => newX !== x)
+
+        if (!map[y].length) {
+            delete map[y]
+        }
+
+        return map
     }
 
     createMapForRerender = () => {
@@ -56,20 +62,20 @@ class StateManager
      * @returns {Object<number, number[]>} - Объект c координатами клеток которые нужно "перевернуть"
      */
     mergeOldAndNewLifeMaps = () => {
-        const mapForUpdating = this.utils.deepCopy(this.newLifeMap)
+        let mapForUpdating = this.utils.deepCopy(this.newLifeMap)
 
         for (let oldY in this.oldLifeMap) {
-            if (mapForUpdating[oldY] === undefined) {
-                mapForUpdating[oldY] = [...this.oldLifeMap[oldY]]
-            } else {
-                for (let idx in this.oldLifeMap[oldY]) {
-                    const oldX = this.oldLifeMap[oldY][idx]
+            for (let idx in this.oldLifeMap[oldY]) {
+                const oldX = this.oldLifeMap[oldY][idx]
 
-                    if (mapForUpdating[oldY].includes(oldX)) {
-                        mapForUpdating[oldY] = this.removeCell(mapForUpdating[oldY], oldX)
-                    } else {
-                        mapForUpdating[oldY].push(oldX)
-                    }
+                if (mapForUpdating[oldY] === undefined) {
+                    mapForUpdating[oldY] = []
+                }
+
+                if (mapForUpdating[oldY].includes(oldX)) {
+                    mapForUpdating = this.removeCell(mapForUpdating, oldY, oldX)
+                } else {
+                    mapForUpdating[oldY].push(oldX)
                 }
             }
         }

@@ -9,10 +9,10 @@ class Game
         this.board = board
     }
 
-    start = async () => {
+    start = () => {
         const startTime = new Date().getTime()
 
-        await this.stateManager.fixStateBeforeNextGeneration()
+        this.stateManager.fixStateBeforeNextGeneration()
             .setNewLifeMap(this.createNewLifeMap())
             .setGenerationNumber(this.stateManager.generationNumber + 1)
 
@@ -20,7 +20,7 @@ class Game
 
         this.stateManager.showTimeToNewGeneration(new Date().getTime() - startTime)
 
-        await this.board.rerender()
+        this.board.rerender()
             .makeNewBoardLifeMap()
 
         this.stateManager.showTimeToNewGenerationWithRerender(new Date().getTime() - startTime)

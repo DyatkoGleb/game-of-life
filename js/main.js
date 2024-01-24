@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const stateManager = new StateManager()
         const board = new Board(stateManager)
         const game = new Game(board, stateManager)
-        const app = new App(board, stateManager, game)
+        const app = new App(board, stateManager)
 
-        new DOMManager(app, new PresetStorage(), stateManager)
+        new DOMManager(app, new PresetStorage(), stateManager, game)
     }).catch((error) => {
         console.error('Error loading scripts:', error)
     })

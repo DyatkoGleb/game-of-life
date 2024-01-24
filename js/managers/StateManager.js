@@ -19,7 +19,7 @@ class StateManager
     }
 
     get isGameProcessing() {
-        return this._isGameProcessing;
+        return this._isGameProcessing
     }
 
     setStoppedGameHandler = (stoppedGameHandler) => {

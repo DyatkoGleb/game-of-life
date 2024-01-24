@@ -8,6 +8,7 @@ class Game
         this.stateManager = stateManager
         this.board = board
     }
+
     start = async () => {
         const startTime = new Date().getTime()
 

@@ -1,9 +1,8 @@
 class App
 {
-    constructor (board, stateManager, game) {
+    constructor (board, stateManager) {
         this.stateManager = stateManager
         this.board = board
-        this.game = game
 
         this.createBoard()
     }
@@ -27,10 +26,6 @@ class App
         this.board
             .updateBoardMap(this.stateManager.mergeOldAndNewLifeMaps())
             .draw()
-    }
-
-    startNewGame = () => {
-        this.game.start()
     }
 
     updateBoard = (clickedElement, x, y) => {

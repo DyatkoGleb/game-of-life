@@ -126,6 +126,12 @@ class DOMManager
         this.isPresetsBlockActive = !this.isPresetsBlockActive
     }
 
+    runningGame = () => {
+        this.btnStart.innerText = 'Stop'
+        this.btnCreateBoard.classList = 'inactive-btn'
+        this.btnGenerateRandomCells.classList = 'inactive-btn'
+    }
+
     stoppedGameHandler = () => {
         this.btnStart.innerText = 'Start'
         this.btnCreateBoard.classList = 'btn'
@@ -136,14 +142,12 @@ class DOMManager
         this.stateManager.isGameProcessing = !this.stateManager.isGameProcessing
 
         if (this.stateManager.isGameProcessing) {
-            this.btnStart.innerText = 'Stop'
-            this.btnCreateBoard.classList = 'inactive-btn'
-            this.btnGenerateRandomCells.classList = 'inactive-btn'
+            this.runningGame()
         } else {
             this.stoppedGameHandler()
         }
 
-        this.app.startNewGame()
+        this.game.start()
     }
 
     showTimeToNewGeneration = (time) => {
@@ -157,5 +161,4 @@ class DOMManager
     showNumberOfGeneration = (num) => {
         this.counterGeneration.textContent = num
     }
-
 }

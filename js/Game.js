@@ -116,6 +116,10 @@ class Game
                 if (this.isLivingCell(neighborX, neighborY)) {
                     counter++
                 }
+
+                if (counter > this.ALLOWED_NUMBER_NEIGHBORS_FOR_NEW_LIFE) {
+                    return false
+                }
             }
         }
 

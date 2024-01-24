@@ -3,9 +3,10 @@ class DOMManager
     isAboutBlockActive = false
     isPresetsBlockActive = false
 
-    constructor (app, presetStorage, stateManager) {
+    constructor (app, presetStorage, stateManager, game) {
         this.presetStorage = presetStorage
         this.stateManager = stateManager
+        this.game = game
         this.app = app
 
         this.initDOMElements()

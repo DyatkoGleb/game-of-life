@@ -52,9 +52,9 @@ class Game
 
     addLiveCellsToMap = (map, callback) => {
         for (let y in map) {
-            for (let idx in map[y]) {
-                const x = Number(map[y][idx])
-                y = Number(y)
+            y = Number(y)
+            for (let i = 0; i < map[y].length; i++) {
+                const x = map[y][i]
 
                 if (callback(x, y)) {
                     this.addCoordinatesToLifeMap(x, y)

@@ -42,9 +42,6 @@ class StateManager
             this.newLifeMap[y] = []
         }
 
-        x = Number(x)
-        y = String(y)
-
         if (!this.newLifeMap[y].includes(x)) {
             this.newLifeMap[y].push(x)
         } else if (needRemoveIfExists) {
@@ -82,7 +79,7 @@ class StateManager
         let mapForUpdating = this.utils.deepCopy(this.newLifeMap)
 
         for (let oldY in this.oldLifeMap) {
-            for (let idx in this.oldLifeMap[oldY]) {
+            for (let idx = 0; idx < this.oldLifeMap[oldY].length; idx++) {
                 const oldX = this.oldLifeMap[oldY][idx]
 
                 if (mapForUpdating[oldY] === undefined) {

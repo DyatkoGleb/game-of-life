@@ -82,10 +82,8 @@ class Board
 
     updateBoardMap = (map) => {
         for (let y in map) {
-            for (let idx in map[y]) {
-                const x = Number(map[y][idx])
-
-                this.updateLifeInCellOnBoardMap(x, y)
+            for (let i = 0; i < map[y].length; i++) {
+                this.updateLifeInCellOnBoardMap(map[y][i], y)
             }
         }
 
@@ -101,7 +99,9 @@ class Board
 
         for (let y in mapForRerender) {
             if (mapForRerender[y].length) {
-                mapForRerender[y].forEach(x => this.toggleElementCellClassState(document.getElementById(`cell_${x}_${y}`)))
+                for (let i = 0; i < mapForRerender[y].length; i++) {
+                    this.toggleElementCellClassState(document.getElementById(`cell_${mapForRerender[y][i]}_${y}`))
+                }
             }
         }
 

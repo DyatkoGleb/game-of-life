@@ -54,7 +54,7 @@ class Game
         for (let y in map) {
             y = Number(y)
             for (let i = 0; i < map[y].length; i++) {
-                const x = map[y][i]
+                const x = Number(map[y][i])
 
                 if (callback(x, y)) {
                     this.addCoordinatesToLifeMap(x, y)
